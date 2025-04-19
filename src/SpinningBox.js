@@ -2,16 +2,28 @@ import { useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useCursor } from '@react-three/drei'
 
+/*
+このファイルは3D空間でインタラクティブに回転するボックスを表示するコンポーネントを提供します。
+主な機能:
+- マウスホバーとクリックイベントに反応する立方体
+- ユーザーがホバーすると色が変わり、ポインターのスタイルが変更される
+- クリックすると大きさが変わる
+- 常に自動回転する3Dボックス
+
+このコンポーネントは、モニター画面に表示されるインタラクティブなコンテンツや、
+3D空間内のインタラクティブな要素として使用されます。
+*/
+
 export function SpinningBox({ scale, ...props }) {
-  // This reference gives us direct access to the THREE.Mesh object
+  // このリファレンスはTHREE.Meshオブジェクトに直接アクセスするためのものです
   const ref = useRef()
-  // Hold state for hovered and clicked events
+  // ホバーとクリックのイベント状態を保持します
   const [hovered, hover] = useState(false)
   const [clicked, click] = useState(false)
   useCursor(hovered)
-  // Subscribe this component to the render-loop, rotate the mesh every frame
+  // このコンポーネントをレンダーループに登録し、毎フレームメッシュを回転させます
   useFrame((state, delta) => (ref.current.rotation.x = ref.current.rotation.y += delta))
-  // Return the view, these are regular Threejs elements expressed in JSX
+  // ビューを返します。これらは通常のThreejsの要素をJSXで表現したものです
   return (
     <mesh
       {...props}

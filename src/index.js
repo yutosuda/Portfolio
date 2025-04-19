@@ -3,6 +3,18 @@ import './styles.css'
 import App from './App'
 import { Logo } from '@pmndrs/branding'
 
+/*
+このファイルはReactアプリケーションのエントリーポイントです。
+主な機能:
+- Reactアプリケーションのルート要素を設定
+- メインの3DシーンコンポーネントとオーバーレイUIの描画
+- ブランディングロゴの配置
+
+このコードは、3Dシーン（App.js）をレンダリングし、その上に情報表示用の
+オーバーレイテキストとロゴを配置します。これにより、3Dコンテンツの表示と
+補足情報や帰属表示を同時に提供します。
+*/
+
 function Overlay() {
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
