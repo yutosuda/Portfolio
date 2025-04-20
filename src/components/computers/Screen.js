@@ -81,7 +81,25 @@ const Screen = React.memo(({ frame, panel, children, customEffect = false, ...pr
 
   // コーナー装飾の形状（LODに応じて品質調整）
   const cornerSegments = qualitySettings.cornerSegments
-  const cornerGeometry = useMemo(() => <sphereGeometry args={[1, cornerSegments, cornerSegments, 0, COMPUTER_CONSTANTS.HALF_PI]} />, [cornerSegments])
+
+  // コーナージオメトリをより精密に調整
+  // 正確な四分円形状のジオメトリを生成し、各コーナーにぴったり合うように調整
+  const cornerGeometry = useMemo(
+    () => (
+      <sphereGeometry
+        args={[
+          1, // 半径
+          Math.max(cornerSegments * 1.5, 16), // 横方向のセグメント数を増やして滑らかさ向上
+          Math.max(cornerSegments * 1.5, 16), // 縦方向のセグメント数を増やして滑らかさ向上
+          0, // phiStart - 開始角度（横方向）
+          COMPUTER_CONSTANTS.HALF_PI * 1.05, // thetaLength - より広い角度範囲で視認性向上
+          0, // thetaStart - 開始角度（縦方向）
+          COMPUTER_CONSTANTS.HALF_PI * 1.05 // phiLength - より広い角度範囲で視認性向上
+        ]}
+      />
+    ),
+    [cornerSegments]
+  )
 
   return (
     <group {...props}>
@@ -119,29 +137,48 @@ const Screen = React.memo(({ frame, panel, children, customEffect = false, ...pr
         </mesh>
       )}
 
-      {/* コーナー加飾 - 左上 */}
-      <mesh position={[-screenParams.corner.x, screenParams.corner.topY, screenParams.z.corner]} scale={screenParams.cornerScale}>
-        {cornerGeometry}
-        <primitive object={cornerMaterial} />
-      </mesh>
+      {/* コーナー装飾群 - より精密に位置決めされたコーナー */}
+      <group>
+        {/* コーナー加飾 - 左上 */}
+        <mesh
+          position={screenParams.corner.topLeft}
+          scale={screenParams.cornerScale}
+          // 左上のコーナーは回転不要（デフォルトの向き）
+          rotation={[0, 0, 0]}>
+          {cornerGeometry}
+          <primitive object={cornerMaterial} />
+        </mesh>
 
-      {/* コーナー加飾 - 右上 */}
-      <mesh position={[screenParams.corner.x, screenParams.corner.topY, screenParams.z.corner]} scale={screenParams.cornerScale} rotation={[0, 0, COMPUTER_CONSTANTS.HALF_PI]}>
-        {cornerGeometry}
-        <primitive object={cornerMaterial} />
-      </mesh>
+        {/* コーナー加飾 - 右上 */}
+        <mesh
+          position={screenParams.corner.topRight}
+          scale={screenParams.cornerScale}
+          // 右上のコーナーはz軸に90度回転
+          rotation={[0, 0, COMPUTER_CONSTANTS.HALF_PI]}>
+          {cornerGeometry}
+          <primitive object={cornerMaterial} />
+        </mesh>
 
-      {/* コーナー加飾 - 左下 */}
-      <mesh position={[-screenParams.corner.x, screenParams.corner.bottomY, screenParams.z.corner]} scale={screenParams.cornerScale} rotation={[0, 0, -COMPUTER_CONSTANTS.HALF_PI]}>
-        {cornerGeometry}
-        <primitive object={cornerMaterial} />
-      </mesh>
+        {/* コーナー加飾 - 左下 */}
+        <mesh
+          position={screenParams.corner.bottomLeft}
+          scale={screenParams.cornerScale}
+          // 左下のコーナーはz軸に-90度回転
+          rotation={[0, 0, -COMPUTER_CONSTANTS.HALF_PI]}>
+          {cornerGeometry}
+          <primitive object={cornerMaterial} />
+        </mesh>
 
-      {/* コーナー加飾 - 右下 */}
-      <mesh position={[screenParams.corner.x, screenParams.corner.bottomY, screenParams.z.corner]} scale={screenParams.cornerScale} rotation={[0, 0, COMPUTER_CONSTANTS.FULL_PI]}>
-        {cornerGeometry}
-        <primitive object={cornerMaterial} />
-      </mesh>
+        {/* コーナー加飾 - 右下 */}
+        <mesh
+          position={screenParams.corner.bottomRight}
+          scale={screenParams.cornerScale}
+          // 右下のコーナーはz軸に180度回転
+          rotation={[0, 0, COMPUTER_CONSTANTS.FULL_PI]}>
+          {cornerGeometry}
+          <primitive object={cornerMaterial} />
+        </mesh>
+      </group>
     </group>
   )
 })
