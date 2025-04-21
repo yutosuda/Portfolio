@@ -2,6 +2,7 @@ import React from 'react'
 import { SCREEN_DEFINITIONS } from '../../utils/constants/computerConstants'
 import ScreenText from './ScreenText'
 import ScreenInteractive from './ScreenInteractive'
+import ScreenImage from './ScreenImage'
 
 /**
  * スクリーングループコンポーネント - 複数のスクリーンをまとめて管理
@@ -16,6 +17,8 @@ const ScreenGroup = React.memo(({ instances }) => {
           return <ScreenInteractive key={`screen-${i}`} {...screen} />
         } else if (screen.type === 'text') {
           return <ScreenText key={`screen-${i}`} {...screen} />
+        } else if (screen.type === 'image') {
+          return <ScreenImage key={`screen-${i}`} {...screen} />
         }
         return null
       })}

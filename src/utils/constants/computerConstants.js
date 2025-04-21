@@ -58,7 +58,8 @@ export const COMPUTER_CONSTANTS = {
     black: 'black',
     orange: 'orange',
     blue: '#3b82f6',
-    purple: '#8b5cf6'
+    purple: '#8b5cf6',
+    teal: '#21F1C0'
   },
 
   // テクスチャ設定
@@ -117,14 +118,18 @@ export const SCREEN_DEFINITIONS = [
     backgroundColor: COMPUTER_CONSTANTS.COLORS.blue,
     customEffect: true
   },
+  // ando-01.pngを表示するスクリーン - 左上のモニター
   {
-    type: 'text',
+    type: 'image',
     frame: 'Object_209',
     panel: 'Object_210',
-    y: 5,
     position: [-1.43, 2.5, -1.8],
     rotation: [0, 1, 0],
-    content: 'System online.',
+    imageUrl: '/ando-01.png', // ando-01.pngを表示
+    linkUrl: 'https://github.com',
+    scale: 0.9,
+    invert: false,
+    backgroundColor: COMPUTER_CONSTANTS.COLORS.teal, // 背景色を#21F1C0に設定
     customEffect: true
   },
   {
@@ -139,15 +144,18 @@ export const SCREEN_DEFINITIONS = [
     content: 'Initializing...',
     customEffect: false
   },
+  // ando-01.pngを表示するスクリーン - 右側のモニター
   {
-    type: 'text',
+    type: 'image',
     frame: 'Object_215',
     panel: 'Object_216',
     position: [1.84, 0.38, -1.77],
     rotation: [0, -COMPUTER_CONSTANTS.FULL_PI / 9, 0],
-    invert: true,
-    content: 'Poimandres.',
-    animated: false,
+    imageUrl: '/ando-01.png', // ando-01.pngを表示
+    linkUrl: 'https://threejs.org',
+    scale: 1.0,
+    invert: false,
+    backgroundColor: COMPUTER_CONSTANTS.COLORS.teal, // 背景色を#21F1C0に設定
     customEffect: true
   },
   {

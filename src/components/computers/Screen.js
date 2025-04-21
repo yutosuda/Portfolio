@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useEffect, useState } from 'react'
+import React, { useRef, useMemo, useEffect, useState, forwardRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF, RenderTexture } from '@react-three/drei'
 import * as THREE from 'three'
@@ -17,9 +17,12 @@ import { PerformanceStats } from '../../utils/hooks/usePerformanceMonitor'
  * カスタムシーンをテクスチャにレンダリングして、それをモニターの画面に投影します
  * パフォーマンス最適化機能を組み込み済み
  */
-const Screen = React.memo(({ frame, panel, children, customEffect = false, ...props }) => {
+const Screen = forwardRef(({ frame, panel, children, customEffect = false, ...props }, ref) => {
   const { nodes, materials } = useGLTF(MODEL_PATH)
   const screenRef = useRef()
+
+  // 外部ref と 内部refの統合
+  React.useImperativeHandle(ref, () => screenRef.current)
 
   // パフォーマンス監視機能を取得
   const performance = usePerformance()
@@ -103,6 +106,7 @@ const Screen = React.memo(({ frame, panel, children, customEffect = false, ...pr
 
   return (
     <group {...props}>
+      {/* クリック可能なフレーム部分（スクリーン全体をクリック可能に） */}
       <mesh castShadow receiveShadow geometry={nodes[frame].geometry} material={materials.Texture} />
 
       {/* スクリーン周囲の輝き効果 */}
