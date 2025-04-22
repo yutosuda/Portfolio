@@ -56,7 +56,7 @@ const ScreenImage = React.memo((props) => {
   }, [texture])
 
   // サイズを2/3に縮小
-  const sizeScale = 0.66 * scale
+  const sizeScale = 0.5 * scale
 
   // クリックイベントのハンドラー - 画面全体にイベントを適用
   const handleClick = useCallback(
@@ -93,7 +93,7 @@ const ScreenImage = React.memo((props) => {
       {/* 画像を表示するための平面 - 画面中央に配置してサイズを2/3に縮小 */}
       <mesh
         ref={planeRef}
-        position={[0, 0, 0.001]} // 背景よりわずかに手前に配置
+        position={[0, 0.5, 0.001]} // 背景よりわずかに手前に配置し、Y軸方向に0.5単位上へ移動
       >
         <planeGeometry
           args={[
