@@ -7,6 +7,7 @@
 - フェードインアニメーションによる視覚効果
 - リンクやSVGのスタイリング
 - 入力フィールドのカスタマイズスタイル
+- メニューリンクのホバーエフェクト
 
 このスタイルシートは、モダンで洗練された見た目を提供し、
 3Dシーンがスムーズに表示されるための基盤を作ります。
@@ -34,12 +35,18 @@ body {
 }
 
 a {
-  color: #f0f0f0;
+  color: #999999;
 }
 
 a {
   pointer-events: all;
-  color: #f0f0f0;
+  color: #999999;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -79,4 +86,32 @@ input {
 input:focus {
   outline: none;
   box-shadow: none !important;
+}
+
+/* メニューリスト用のスタイル */
+.menu-list {
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+
+.menu-title {
+  font-family: monospace;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #999999;
+  transition: color 0.2s ease-in-out;
+}
+
+.menu-title:hover {
+  color: #ffffff;
+}
+
+.menu-item {
+  margin-bottom: 3px;
+  transition: color 0.2s ease-in-out;
+}
+
+.menu-item:hover a {
+  color: #ffffff;
 }
