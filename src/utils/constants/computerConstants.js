@@ -108,108 +108,132 @@ export const LED_POSITIONS = [
   [-1.21, 1.73, -1.49]
 ]
 
-// スクリーン定義
+// スクリーン定義 - すべてイメージタイプに変更
 export const SCREEN_DEFINITIONS = [
   {
-    type: 'interactive',
+    type: 'image',
     frame: 'Object_206',
     panel: 'Object_207',
     position: [0.27, 1.53, -2.61],
+    rotation: [0, 0, 0],
+    imageName: 'ando-01.png',
+    imageUrl: '/ando-01.png',
+    linkUrl: 'https://example.com',
+    scale: 1.0,
+    invert: false,
     backgroundColor: COMPUTER_CONSTANTS.COLORS.blue,
     customEffect: true
   },
-  // ando-01.pngを表示するスクリーン - 左上のモニター
   {
     type: 'image',
     frame: 'Object_209',
     panel: 'Object_210',
     position: [-1.43, 2.5, -1.8],
     rotation: [0, 1, 0],
-    imageUrl: '/ando-01.png', // ando-01.pngを表示
+    imageName: 'ando-01.png',
+    imageUrl: '/ando-01.png',
     linkUrl: 'https://github.com',
-    scale: 0.9,
+    scale: 1.0,
     invert: false,
-    backgroundColor: COMPUTER_CONSTANTS.COLORS.teal, // 背景色を#21F1C0に設定
+    backgroundColor: COMPUTER_CONSTANTS.COLORS.teal,
     customEffect: true
   },
   {
-    type: 'text',
+    type: 'image',
     frame: 'Object_212',
     panel: 'Object_213',
-    x: -5,
-    y: 5,
     position: [-2.73, 0.63, -0.52],
     rotation: [0, 1.09, 0],
-    invert: true,
-    content: 'Initializing...',
-    customEffect: false
+    imageName: 'ando-01.png',
+    imageUrl: '/ando-01.png',
+    linkUrl: 'https://github.com',
+    scale: 1.0,
+    invert: false,
+    backgroundColor: COMPUTER_CONSTANTS.COLORS.purple,
+    customEffect: true
   },
-  // ando-01.pngを表示するスクリーン - 右側のモニター
   {
     type: 'image',
     frame: 'Object_215',
     panel: 'Object_216',
     position: [1.84, 0.38, -1.77],
     rotation: [0, -COMPUTER_CONSTANTS.FULL_PI / 9, 0],
-    imageUrl: '/ando-01.png', // ando-01.pngを表示
+    imageName: 'ando-01.png',
+    imageUrl: '/ando-01.png',
     linkUrl: 'https://threejs.org',
     scale: 1.0,
     invert: false,
-    backgroundColor: COMPUTER_CONSTANTS.COLORS.teal, // 背景色を#21F1C0に設定
+    backgroundColor: COMPUTER_CONSTANTS.COLORS.teal,
     customEffect: true
   },
   {
-    type: 'text',
+    type: 'image', // テキスト型からイメージ型に変更
     frame: 'Object_218',
     panel: 'Object_219',
-    x: -5,
     position: [3.11, 2.15, -0.18],
     rotation: [0, -0.79, 0],
-    scale: 0.81,
+    scale: 1.0,
     invert: true,
-    content: 'Loading...',
-    fontSize: 3.5,
+    imageName: 'ando-01.png',
+    imageUrl: '/ando-01.png',
+    linkUrl: 'https://example.com',
+    backgroundColor: COMPUTER_CONSTANTS.COLORS.blue,
     customEffect: true
   },
   {
-    type: 'text',
+    type: 'image', // テキスト型からイメージ型に変更
     frame: 'Object_221',
     panel: 'Object_222',
-    y: 5,
     position: [-3.42, 3.06, 1.3],
     rotation: [0, 1.22, 0],
-    scale: 0.9,
-    content: 'Ready',
+    scale: 1.0,
+    imageName: 'ando-01.png',
+    imageUrl: '/ando-01.png',
+    linkUrl: 'https://example.com',
+    invert: false,
+    backgroundColor: COMPUTER_CONSTANTS.COLORS.orange,
     customEffect: false
   },
   {
-    type: 'text',
+    type: 'image', // テキスト型からイメージ型に変更
     frame: 'Object_224',
     panel: 'Object_225',
     position: [-3.9, 4.29, -2.64],
     rotation: [0, 0.54, 0],
     invert: true,
-    content: 'System check',
-    fontSize: 3,
+    imageName: 'ando-01.png',
+    imageUrl: '/ando-01.png',
+    linkUrl: 'https://example.com',
+    scale: 1.0,
+    backgroundColor: COMPUTER_CONSTANTS.COLORS.purple,
     customEffect: true
   },
   {
-    type: 'text',
+    type: 'image', // テキスト型からイメージ型に変更
     frame: 'Object_227',
     panel: 'Object_228',
     position: [0.96, 4.28, -4.2],
     rotation: [0, -0.65, 0],
-    content: 'Standby',
+    imageName: 'ando-01.png',
+    imageUrl: '/ando-01.png',
+    linkUrl: 'https://example.com',
+    scale: 1.0,
+    invert: false,
+    backgroundColor: COMPUTER_CONSTANTS.COLORS.white,
     customEffect: false
   },
   {
-    type: 'text',
+    type: 'image', // テキスト型からイメージ型に変更
     frame: 'Object_230',
     panel: 'Object_231',
     position: [4.68, 4.29, -1.56],
     rotation: [0, -COMPUTER_CONSTANTS.FULL_PI / 3, 0],
-    content: 'Processing',
-    animated: true,
+    imageName: 'ando-01.png',
+    imageUrl: '/ando-01.png',
+    linkUrl: 'https://example.com',
+    scale: 1.0,
+    invert: false,
+    backgroundColor: COMPUTER_CONSTANTS.COLORS.teal,
     customEffect: true
   }
 ]
